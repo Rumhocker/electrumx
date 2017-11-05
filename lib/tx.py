@@ -318,7 +318,8 @@ class DeserializerTxTime(Deserializer):
             self._read_le_uint32(), # locktime
         ), double_sha256(self.binary[start:self.cursor])
 
-class DeserializerTxTimeTxComment(Deserializer):
+
+class DeserializerTxComment(Deserializer):
     def read_tx(self):
         start = self.cursor
 

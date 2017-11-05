@@ -1119,11 +1119,11 @@ class DeutscheEmark(Coin):
     BASIC_HEADER_SIZE = 81
     GENESIS_HASH = ('00000ac7a13fffb72c10f6fd9a773dcf'
                     '3e8388b8ffc359cee2483b1236ebcda1')
-    DESERIALIZER = lib_tx.DeserializerTxTimeTxComment
+    DESERIALIZER = lib_tx.DeserializerTxComment
     DAEMON = daemon.LegacyRPCDaemon
-    TX_COUNT = 1500000
+    TX_COUNT = 3000000
     TX_COUNT_HEIGHT = 1500000
-    TX_PER_BLOCK = 1
+    TX_PER_BLOCK = 4
     IRC_PREFIX = "E_"
     IRC_CHANNEL = "#electrum-dem"
     RPC_PORT = 6666
