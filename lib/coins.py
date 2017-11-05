@@ -1108,3 +1108,26 @@ class CanadaeCoin(AuxPowMixin, Coin):
     IRC_CHANNEL="#electrum-cdn"
     RPC_PORT = 34330
     REORG_LIMIT = 1000
+
+class DeutscheEmark(Coin):
+    NAME = "Deutsche eMark"
+    SHORTNAME = "DEM"
+    NET = "mainnet"
+    P2PKH_VERBYTE = bytes.fromhex("35")
+    P2SH_VERBYTES = [bytes.fromhex("1E")]
+    WIF_BYTE = bytes.fromhex("b5")
+    BASIC_HEADER_SIZE = 81
+    GENESIS_HASH = ('00000ac7a13fffb72c10f6fd9a773dcf'
+                    '3e8388b8ffc359cee2483b1236ebcda1')
+    DESERIALIZER = lib_tx.DeserializerTxTimeTxComment
+    DAEMON = daemon.LegacyRPCDaemon
+    TX_COUNT = 1500000
+    TX_COUNT_HEIGHT = 1500000
+    TX_PER_BLOCK = 1
+    IRC_PREFIX = "E_"
+    IRC_CHANNEL = "#electrum-dem"
+    RPC_PORT = 6666
+    REORG_LIMIT = 1000
+    PEERS = [
+        'electrum-dem.wenusch.nl'
+    ]

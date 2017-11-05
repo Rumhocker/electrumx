@@ -318,6 +318,19 @@ class DeserializerTxTime(Deserializer):
             self._read_le_uint32(), # locktime
         ), double_sha256(self.binary[start:self.cursor])
 
+class DeserializerTxTimeTxComment(Deserializer):
+    def read_tx(self):
+        start = self.cursor
+
+        return TxTime(
+            self._read_le_int32(),      # version
+            self._read_le_uint32(),     # time
+            self._read_inputs(),        # inputs
+            self._read_outputs(),       # outputs
+            self._read_le_uint32(),     # locktime
+            self._read_varbytes(), # txcomment
+        ), double_sha256(self.binary[start:self.cursor])
+
 
 class DeserializerReddcoin(Deserializer):
     def read_tx(self):
