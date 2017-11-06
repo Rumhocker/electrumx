@@ -306,6 +306,14 @@ class TxTime(namedtuple("Tx", "version time inputs outputs locktime")):
         return self.inputs[0].is_coinbase
 
 
+class TxComment(namedtuple("Tx", "version time inputs outputs locktime txcomment")):
+    '''Class representing transaction that has a time field.'''
+
+    @cachedproperty
+    def is_coinbase(self):
+        return self.inputs[0].is_coinbase
+
+
 class DeserializerTxTime(Deserializer):
     def read_tx(self):
         start = self.cursor
@@ -323,13 +331,13 @@ class DeserializerTxComment(Deserializer):
     def read_tx(self):
         start = self.cursor
 
-        return TxTime(
+        return TxComment(
             self._read_le_int32(),      # version
             self._read_le_uint32(),     # time
             self._read_inputs(),        # inputs
             self._read_outputs(),       # outputs
             self._read_le_uint32(),     # locktime
-            self._read_varbytes(), # txcomment
+            self._read_varbytes()      # txcomment
         ), double_sha256(self.binary[start:self.cursor])
 
 
